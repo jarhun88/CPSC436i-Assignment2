@@ -8,8 +8,8 @@ class Header extends React.Component {
 
     render() {
         return (
-            <div class="topnav" id="myTopnav">
-                <a href="index.html" class="active">Home</a>
+            <div className="topnav" id="myTopnav">
+                <a href="index.html" className="active">Home</a>
                 <a href="about.html">About</a>
             </div>
         )

@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Header from './header';
 import HomePage from './HomePage';
+import About from './About'
 
 class App extends React.Component {
 
@@ -10,6 +11,7 @@ class App extends React.Component {
       <div className="App">
         <Header />
         <HomePage />
+        {/* <About /> */}
 
       </div>
     );

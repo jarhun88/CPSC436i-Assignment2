@@ -1,0 +1,51 @@
+#container {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 2%;
+    width: 100%;
+  }
+
+.list-container {
+    margin: 2%;
+    background-color: #bbbe64;
+    width: 100%;
+  }
+
+.form-container {
+    /* background-color: #8e5572; */
+    width: 100%;
+  }
+  
+  #list {
+    list-style-type: none;
+    margin: 0;
+    width: 100%;
+    padding-left: 0;
+    display: inline-block;
+  }
+  
+  .close {
+    cursor:pointer;
+    float: right;
+  }
+  
+  input {
+    margin: 5px;
+  }
+  
+  button {
+    margin: 5px;
+  }
+  
+  li {
+    background-color: #dddfa1;
+    border: 2px solid #73AD21;
+    margin: 5px;
+    flex-wrap: wrap;
+    text-align: center;
+    height: 24px;
+    font-size: 20px;
+  }
