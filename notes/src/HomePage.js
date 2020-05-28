@@ -2,6 +2,9 @@ import React from 'react';
 import './HomePage.css'
 
 class HomePage extends React.Component {
+    constructor() {
+        super();
+    }
 
     // Add a "checked" symbol when clicking on a list item
     closeListItem = () => {
@@ -76,7 +79,6 @@ class HomePage extends React.Component {
                     <button type="button" id="message" onClick={this.addMessage}>Add Message</button>
                     <button type="button" onClick={this.clearMessage}>Clear</button>
                 </div>
-
 
                 <div className="list-container">
 

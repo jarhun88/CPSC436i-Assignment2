@@ -5,7 +5,15 @@
     text-align: center;
 }
   
-#dog {
+.ant {
     height: 50%;
     width: 50%;
+}
+
+.form-container {
+    width: 100%;
+}
+
+p {
+    color: white;
 }
