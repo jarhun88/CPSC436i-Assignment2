@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import input from './addListItemReducer';
+import input from './ListItemReducer';
 
 
 const rootReducer = combineReducers({

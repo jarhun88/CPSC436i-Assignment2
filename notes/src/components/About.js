@@ -11,7 +11,7 @@ class About extends React.Component {
           <div id="about-info-container">
               <h1>About Page</h1>
               <p>All hail the queen! </p>
-              <div><img className="ant" src={Ant} /></div>
+              <div><img className="ant" src={Ant} alt="an ant" /></div>
           </div>
                 
         </div>
