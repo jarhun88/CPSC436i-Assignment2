@@ -8,25 +8,26 @@ import PropTypes from 'prop-types'
 class HomePage extends React.Component {
     state = {
         input: {
-            text: ""
+            text: "",
+            id: 2
         }
     }
 
     // Add a "checked" symbol when clicking on a list item
-    closeListItem = () => {
-        let close = document.getElementsByClassName("close");
-        let i;
-        for (i = 0; i < close.length; i++) {
-            close[i].onClick = function() {
-                let div = this.parentElement;
-                div.style.display = "none";
-            }
-        }
-    }
+    // closeListItem = () => {
+    //     let close = document.getElementsByClassName("close");
+    //     let i;
+    //     for (i = 0; i < close.length; i++) {
+    //         close[i].onClick = function() {
+    //             let div = this.parentElement;
+    //             div.style.display = "none";
+    //         }
+    //     }
+    // }
   
     clearInput = event => {
         event.preventDefault()
-        const input = {  text: "" }
+        const input = {  text: "", id: this.state.input.id }
         this.setState({ input })
     }
   
@@ -43,7 +44,15 @@ class HomePage extends React.Component {
  
     handleSubmit = event => {
         event.preventDefault();
-        this.props.dispatch(listActions.addListItem(this.state.input))
+        this.props.dispatch(listActions.addListItem(this.state.input, this.state.id))
+        const input = { text: this.state.input.text, id: this.state.input.id + 1}
+        this.setState({ input })
+    }
+
+    deleteListItem(input) {
+        console.log("HI")
+        console.log(input.id)
+        this.props.dispatch(listActions.deleteListItem(input.id))
     }
 
     render() {
@@ -70,11 +79,12 @@ class HomePage extends React.Component {
 
                     <div>
                         <button type="button" onClick={this.clearList}>Clear list</button>
-
+                        <ul id="list">
                         { this.props.inputs.map( i => (
-                            <div key={i.text}>{i.text}</div>
+                            <li key={i.id}>{i.text}<span className="close" onClick={() => this.deleteListItem(i)}>X</span></li>
                             )
                         )}
+                        </ul>
                     </div>
             
                 </div>
