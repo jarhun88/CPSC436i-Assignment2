@@ -9,21 +9,10 @@ class HomePage extends React.Component {
     state = {
         input: {
             text: "",
-            id: 2
-        }
+            id: 2,
+        },
+        selected: ""
     }
-
-    // Add a "checked" symbol when clicking on a list item
-    // closeListItem = () => {
-    //     let close = document.getElementsByClassName("close");
-    //     let i;
-    //     for (i = 0; i < close.length; i++) {
-    //         close[i].onClick = function() {
-    //             let div = this.parentElement;
-    //             div.style.display = "none";
-    //         }
-    //     }
-    // }
   
     clearInput = event => {
         event.preventDefault()
@@ -50,9 +39,13 @@ class HomePage extends React.Component {
     }
 
     deleteListItem(input) {
-        console.log("HI")
-        console.log(input.id)
         this.props.dispatch(listActions.deleteListItem(input.id))
+    }
+
+    select = input => {
+        const selected = input.text
+        console.log(selected)
+        this.setState({ selected })
     }
 
     render() {
@@ -73,15 +66,23 @@ class HomePage extends React.Component {
 
                 <div className="list-container">
 
+                    <div className="detailedView">
+                        <h3>Currently Selected</h3>
+                        <div className="selected">
+                            {this.state.selected}
+                        </div>
+                    </div>
+
                     <div>
                         <h3>Current Messages</h3>
                     </div>
 
                     <div>
+                        
                         <button type="button" onClick={this.clearList}>Clear list</button>
                         <ul id="list">
                         { this.props.inputs.map( i => (
-                            <li key={i.id}>{i.text}<span className="close" onClick={() => this.deleteListItem(i)}>X</span></li>
+                            <li key={i.id} onClick={() => this.select(i)}>{i.text} <span className="close" onClick={() => this.deleteListItem(i)}>X</span></li>
                             )
                         )}
                         </ul>
