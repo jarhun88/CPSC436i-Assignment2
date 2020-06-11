@@ -2,10 +2,11 @@ export const ADD_LIST_ITEM = 'ADD_LIST_ITEM'
 export const CLEAR_LIST_ITEMS = 'CLEAR_LIST_ITEMS'
 export const DELETE_LIST_ITEM = 'DELETE_LIST_ITEM'
 
-export function addListItem(input, id) {
+export function addListItem(input, id, date) {
     return {
         type: ADD_LIST_ITEM, 
         id,
+        date,
         input
     }
 }

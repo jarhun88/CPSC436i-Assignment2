@@ -10,12 +10,13 @@ class HomePage extends React.Component {
         input: {
             text: "",
             id: 2,
+            date: ""
         },
         selected: ""
     }
   
     clearInput = event => {
-        event.preventDefault()
+        event.preventDefault();
         const input = {  text: "", id: this.state.input.id };
         this.setState({ input });
     }
@@ -26,14 +27,20 @@ class HomePage extends React.Component {
     }
 
     handleChange = event => {
-        const input = { ...this.state.input, text: event.target.value };
-        console.log(input);
+        let today = new Date();
+        let day = today.getDate()
+        let month = today.getMonth() + 1;
+        let fullDate = day + "/" + month + "/" + today.getFullYear(); 
+        console.log(fullDate)
+        const input = { ...this.state.input, text: event.target.value, date: fullDate };
         this.setState({ input });
     }
  
     handleSubmit = event => {
         event.preventDefault();
-        this.props.dispatch(listActions.addListItem(this.state.input, this.state.id));
+        this.props.dispatch(listActions.addListItem(this.state.input, this.state.id, this.state.date));
+        
+        // console.log(date);
         const input = { text: this.state.input.text, id: this.state.input.id + 1};
         this.setState({ input });
     }
@@ -72,7 +79,7 @@ class HomePage extends React.Component {
                         <button type="button" onClick={this.clearList}>Clear list</button>
                         <ul id="list">
                         { this.props.inputs.map( i => (
-                            <li key={i.id} onClick={() => this.select(i)}>{i.text} <span className="close" onClick={() => this.deleteListItem(i)}>X</span></li>
+                            <li key={i.id} onClick={() => this.select(i)}><span className="date">{i.date}</span>{i.text} <span className="close" onClick={() => this.deleteListItem(i)}>X</span></li>
                             )
                         )}
                         </ul>

@@ -15,7 +15,6 @@
   }
 
 .form-container {
-    /* background-color: #8e5572; */
     width: 100%;
   }
   
@@ -48,4 +47,8 @@
     text-align: center;
     height: 24px;
     font-size: 20px;
+  }
+
+  .date {
+    float:left;
   }
