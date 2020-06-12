@@ -9,7 +9,7 @@ class HomePage extends React.Component {
     state = {
         input: {
             text: "",
-            id: 2,
+            _id: 2,
             date: ""
         },
         selected: ""
@@ -17,7 +17,7 @@ class HomePage extends React.Component {
   
     clearInput = event => {
         event.preventDefault();
-        const input = {  text: "", id: this.state.input.id };
+        const input = {  text: "", _id: this.state.input._id };
         this.setState({ input });
     }
   
@@ -38,15 +38,15 @@ class HomePage extends React.Component {
  
     handleSubmit = event => {
         event.preventDefault();
-        this.props.dispatch(listActions.addListItem(this.state.input, this.state.id, this.state.date));
+        this.props.dispatch(listActions.addListItem(this.state.input, this.state._id, this.state.date));
         
         // console.log(date);
-        const input = { text: this.state.input.text, id: this.state.input.id + 1};
+        const input = { text: this.state.input.text, _id: this.state.input._id + 1};
         this.setState({ input });
     }
 
     deleteListItem(input) {
-        this.props.dispatch(listActions.deleteListItem(input.id));
+        this.props.dispatch(listActions.deleteListItem(input._id));
     }
 
     select = input => {
@@ -79,7 +79,7 @@ class HomePage extends React.Component {
                         <button type="button" onClick={this.clearList}>Clear list</button>
                         <ul id="list">
                         { this.props.inputs.map( i => (
-                            <li key={i.id} onClick={() => this.select(i)}><span className="date">{i.date}</span>{i.text} <span className="close" onClick={() => this.deleteListItem(i)}>X</span></li>
+                            <li key={i._id} onClick={() => this.select(i)}><span className="date">{i.date}</span>{i.text} <span className="close" onClick={() => this.deleteListItem(i)}>X</span></li>
                             )
                         )}
                         </ul>
