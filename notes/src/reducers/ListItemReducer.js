@@ -12,7 +12,7 @@ export default function listItemReducer(state = initialState, action) {
         case CLEAR_LIST_ITEMS:
             return []
         case DELETE_LIST_ITEM:
-            return [...state].filter((input) => { return input.id != action.id})
+            return [...state].filter((input) => { return input.id !== action.id})
         default:
             return state;
     }
