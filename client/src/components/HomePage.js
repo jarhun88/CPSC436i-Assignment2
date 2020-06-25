@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import  * as listActions from '../actions/index'
 import PropTypes from 'prop-types'
 import DetailedView from './DetailedView'
+import axios from 'axios'
 
 class HomePage extends React.Component {
     state = {
@@ -13,6 +14,37 @@ class HomePage extends React.Component {
             date: ""
         },
         selected: ""
+    }
+
+    componentDidMount = async () => {
+        await this.createMessage();
+    }
+
+    getMessage = async () => {
+        try {
+            const res = await axios.get('http://localhost:8000/messages/');
+            console.log(res);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    createMessage = async () => {
+        try {
+            const res = await axios.post('http://localhost:8000/messages/createMessage');
+            console.log(res);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    deleteMessage = async () => {
+        try {
+            const res = await axios.delete('http://localhost:8000/messages/deleteMessage');
+            console.log(res);
+        } catch (error) {
+            console.error(error);
+        }
     }
   
     clearInput = event => {
