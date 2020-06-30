@@ -4,7 +4,7 @@ let Schema = mongoose.Schema;
 
 let messageSchema = new Schema({
     _id: {
-        type: Number,
+        type: String,
         required: true
     },
     text: {
@@ -17,4 +17,4 @@ let messageSchema = new Schema({
     }
 })
 
-module.exports = messageSchema; 
+module.exports = mongoose.model('Message', messageSchema); 
