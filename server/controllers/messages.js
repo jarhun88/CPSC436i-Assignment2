@@ -31,7 +31,7 @@ const createMessage = (req, res) => {
 const deleteMessage = async (req, res) => {
     try {
         console.log(req.body._id)
-        const messageDelete = await messageSchema.deleteOne({_id: req.body._id});
+        const messageDelete = await messageSchema.deleteOnes({_id: req.body._id});
         console.log(messageDelete);
         if (messageDelete) {
             res.status(200).json({message: 'successfully deleted'});
@@ -39,7 +39,7 @@ const deleteMessage = async (req, res) => {
             res.status(500).json({message: 'could not delete'});
         }
     } catch (err) {
-        // console.err(err);
+        console.err(err);
         return res.status(500).send(err);
     }
 };
