@@ -8,4 +8,6 @@ router.post('/createMessage', messageController.createMessage);
 
 router.delete('/deleteMessage', messageController.deleteMessage);
 
+router.delete('/deleteAllMessages', messageController.deleteAllMessages)
+
 module.exports = router;

@@ -1,18 +1,17 @@
-import { ADD_LIST_ITEM, CLEAR_LIST_ITEMS, DELETE_LIST_ITEM } from '../actions/index';
+import { ADD_LIST_ITEM, CLEAR_LIST_ITEMS, DELETE_LIST_ITEM, GET_LIST_ITEMS } from '../actions/index';
+const axios = require('axios');
 
-const initialState = [
-    { text: "W O R K", _id: 0, date: "01/1/2015"},
-    { text: "L I F T", _id: 1, date: "21/4/2019"}
-]
-
-export default function listItemReducer(state = initialState, action) {
+export default function listItemReducer(state = [], action) {
     switch (action.type) {
         case ADD_LIST_ITEM: 
             return [...state, { ...action.input }];
         case CLEAR_LIST_ITEMS:
-            return []
+            return [];
         case DELETE_LIST_ITEM:
-            return [...state].filter((input) => { return input._id !== action._id})
+            return [...state].filter((input) => { return input._id !== action._id});
+        case GET_LIST_ITEMS:
+            console.log(action.payload)
+            return action.payload;
         default:
             return state;
     }

@@ -6,6 +6,7 @@ const getMessages = async (req, res) => {
         const messages = await messageSchema.find();
         return res.json(messages);
     } catch (err) {
+        console.log(err)
         return res.status(500).send(err);
     }    
 };
@@ -20,6 +21,7 @@ const createMessage = async (req, res) => {
         await message.save();
         return res.status(200).json({message: 'Message Created'}); 
     } catch (err) {
+        console.log(err)
         return res.status(500).json({message: err});
     }
 };
@@ -40,4 +42,14 @@ const deleteMessage = async (req, res) => {
     }
 };
 
-module.exports = {getMessages, createMessage, deleteMessage};
+const deleteAllMessages = async (req, res) => {
+    try {
+        const deleteAll = await messageSchema.remove({});
+        return res.json(deleteAll);
+    } catch (err) {
+        console.log(err);
+        return res.status(500).send(err);
+    }
+}
+
+module.exports = {getMessages, createMessage, deleteMessage, deleteAllMessages};

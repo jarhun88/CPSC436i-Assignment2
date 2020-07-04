@@ -4,47 +4,24 @@ import { connect } from 'react-redux'
 import  * as listActions from '../actions/index'
 import PropTypes from 'prop-types'
 import DetailedView from './DetailedView'
-import axios from 'axios'
+// import axios from 'axios'
 
 class HomePage extends React.Component {
     state = {
         input: {
+            _id: "",
             text: "",
-            _id: 2,
             date: ""
         },
         selected: ""
     }
 
-    componentDidMount = async () => {
-        await this.createMessage();
+    componentDidMount = () => {
+        this.getMessage();
     }
 
-    getMessage = async () => {
-        try {
-            const res = await axios.get('http://localhost:8000/messages/');
-            console.log(res);
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
-    createMessage = async () => {
-        try {
-            const res = await axios.post('http://localhost:8000/messages/createMessage');
-            console.log(res);
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
-    deleteMessage = async () => {
-        try {
-            const res = await axios.delete('http://localhost:8000/messages/deleteMessage');
-            console.log(res);
-        } catch (error) {
-            console.error(error);
-        }
+    getMessage = () => {
+        this.props.dispatch(listActions.getListItems());
     }
   
     clearInput = event => {
@@ -63,7 +40,6 @@ class HomePage extends React.Component {
         let day = today.getDate()
         let month = today.getMonth() + 1;
         let fullDate = day + "/" + month + "/" + today.getFullYear(); 
-        console.log(fullDate)
         const input = { ...this.state.input, text: event.target.value, date: fullDate };
         this.setState({ input });
     }
@@ -72,12 +48,12 @@ class HomePage extends React.Component {
         event.preventDefault();
         this.props.dispatch(listActions.addListItem(this.state.input, this.state._id, this.state.date));
         
-        // console.log(date);
-        const input = { text: this.state.input.text, _id: this.state.input._id + 1};
+        const input = { text: this.state.input.text};
         this.setState({ input });
     }
 
     deleteListItem(input) {
+        console.log(input._id)
         this.props.dispatch(listActions.deleteListItem(input._id));
     }
 
