@@ -52,4 +52,15 @@ const deleteAllMessages = async (req, res) => {
     }
 }
 
-module.exports = {getMessages, createMessage, deleteMessage, deleteAllMessages};
+const updateMessage = async (req, res) => {
+    try {
+        await messageSchema.updateOne({_id: req.body._id}, {$set: {text: req.body.updateText}});
+        console.log('updating request sent');
+        return res.status(200).json({message: 'successfully updated'});
+    } catch (err) {
+        console.log(err);
+        return res.status(500).send(err);
+    }
+}
+
+module.exports = {getMessages, createMessage, deleteMessage, deleteAllMessages, updateMessage};

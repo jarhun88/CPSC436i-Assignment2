@@ -4,6 +4,7 @@ export const ADD_LIST_ITEM = 'ADD_LIST_ITEM'
 export const CLEAR_LIST_ITEMS = 'CLEAR_LIST_ITEMS'
 export const DELETE_LIST_ITEM = 'DELETE_LIST_ITEM'
 export const GET_LIST_ITEMS = 'GET_LIST_ITEMS'
+export const UPDATE_LIST_ITEM = 'UPDATE_LIST_ITEM'
 
 export const getListItems = () => async (
     dispatch, getState
@@ -65,6 +66,25 @@ export const clearListItem = () => async (
         })
     } catch (err) {
         console.log('error occured', err);
+    }
+}
+
+export const updateItem = (input, updateText) => async (
+    dispatch, getState
+) => {
+    try {
+        console.log(updateText);
+        await axios.put('http://localhost:8000/messages/updateMessage', {
+            _id: input._id,
+            updateText: updateText
+        })
+        dispatch({
+            type: UPDATE_LIST_ITEM,
+            input
+        })
+
+    } catch (err) {
+        console.log(err);
     }
 }
 

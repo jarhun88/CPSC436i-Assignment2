@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import  * as listActions from '../actions/index'
 import PropTypes from 'prop-types'
 import DetailedView from './DetailedView'
-// import axios from 'axios'
 
 class HomePage extends React.Component {
     state = {
@@ -13,11 +12,19 @@ class HomePage extends React.Component {
             text: "",
             date: ""
         },
-        selected: ""
+        selected: "",
+        updatedText: ""
     }
 
     componentDidMount = () => {
         this.getMessage();
+    }
+
+    updateItem = event => {
+        event.preventDefault();
+        console.log('updating')
+        this.props.dispatch(listActions.updateItem(this.state.selected, this.state.updatedText));
+        window.location.reload(false);
     }
 
     getMessage = () => {
@@ -43,6 +50,12 @@ class HomePage extends React.Component {
         const input = { ...this.state.input, text: event.target.value, date: fullDate };
         this.setState({ input });
     }
+
+    handleUpdateTextChange = event => {
+        const updatedText = event.target.value;
+        this.setState({updatedText})
+        console.log(this.state.updatedText)
+    }
  
     handleSubmit = event => {
         event.preventDefault();
@@ -58,8 +71,8 @@ class HomePage extends React.Component {
     }
 
     select = input => {
-        const selected = input.text;
-        console.log(selected);
+        const selected = input;
+        // console.log(selected);
         this.setState({ selected });
     }
 
@@ -80,14 +93,18 @@ class HomePage extends React.Component {
                 </div>
 
                 <div className="list-container">
-                    <DetailedView selected={this.state.selected}></DetailedView>
+                    <DetailedView selected={this.state.selected} updateItem={this.updateItem}
+                    updateText={this.handleUpdateTextChange}></DetailedView>
 
                     <div>
                     <h3>Current Messages</h3>
                         <button type="button" onClick={this.clearList}>Clear list</button>
                         <ul id="list">
                         { this.props.inputs.map( i => (
-                            <li key={i._id} onClick={() => this.select(i)}><span className="date">{i.date}</span>{i.text} <span className="close" onClick={() => this.deleteListItem(i)}>X</span></li>
+                            <li key={i._id} onClick={() => this.select(i)}>
+                                <span className="date">{i.date}</span>{i.text} 
+                                <span className="close" onClick={() => this.deleteListItem(i)}>X</span>
+                            </li>
                             )
                         )}
                         </ul>
