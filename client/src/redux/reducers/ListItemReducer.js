@@ -1,5 +1,4 @@
 import { ADD_LIST_ITEM, CLEAR_LIST_ITEMS, DELETE_LIST_ITEM, GET_LIST_ITEMS, UPDATE_LIST_ITEM } from '../actions/index';
-const axios = require('axios');
 
 export default function listItemReducer(state = [], action) {
     switch (action.type) {

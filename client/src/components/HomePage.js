@@ -1,7 +1,7 @@
 import React from 'react';
 import './HomePage.css'
 import { connect } from 'react-redux'
-import  * as listActions from '../actions/index'
+import  * as listActions from '../redux/actions/index'
 import PropTypes from 'prop-types'
 import DetailedView from './DetailedView'
 
