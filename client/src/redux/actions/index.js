@@ -7,7 +7,7 @@ export const GET_LIST_ITEMS = 'GET_LIST_ITEMS'
 export const UPDATE_LIST_ITEM = 'UPDATE_LIST_ITEM'
 
 export const getListItems = () => async (
-    dispatch, getState
+    dispatch
 ) => {
     try {
         let listItems = await axios.get('http://localhost:8000/messages/');
@@ -21,7 +21,7 @@ export const getListItems = () => async (
 } 
 
 export const addListItem = (input) => async (
-    dispatch, getState
+    dispatch
 ) =>  {
     try {
         console.log(input)
@@ -40,7 +40,7 @@ export const addListItem = (input) => async (
 }
 
 export const deleteListItem = (_id) => async (
-    dispatch, getState
+    dispatch
 ) => {
     try {
         console.log(_id);
@@ -57,7 +57,7 @@ export const deleteListItem = (_id) => async (
 }
  
 export const clearListItem = () => async (
-    dispatch, getState
+    dispatch
 ) => {
     try {
         await axios.delete('http://localhost:8000/messages/deleteAllMessages');
@@ -70,7 +70,7 @@ export const clearListItem = () => async (
 }
 
 export const updateItem = (input, updateText) => async (
-    dispatch, getState
+    dispatch
 ) => {
     try {
         console.log(updateText);
