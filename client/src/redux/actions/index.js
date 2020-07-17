@@ -10,7 +10,7 @@ export const getListItems = () => async (
     dispatch
 ) => {
     try {
-        let listItems = await axios.get('http://localhost:8000/messages/');
+        let listItems = await axios.get('https://antworld-server.herokuapp.com/messages/');
         dispatch({
             type: GET_LIST_ITEMS,
             payload: listItems.data
@@ -25,7 +25,7 @@ export const addListItem = (input) => async (
 ) =>  {
     try {
         console.log(input)
-        await axios.post('http://localhost:8000/messages/createMessage', {
+        await axios.post('https://antworld-server.herokuapp.com/messages/createMessage', {
             text: input.text,
             date: input.date
         });
@@ -44,7 +44,7 @@ export const deleteListItem = (_id) => async (
 ) => {
     try {
         console.log(_id);
-        await axios.delete('http://localhost:8000/messages/deleteMessage', {
+        await axios.delete('https://antworld-server.herokuapp.com/messages/deleteMessage', {
             data: {_id: _id}
         })
         dispatch({
@@ -60,7 +60,7 @@ export const clearListItem = () => async (
     dispatch
 ) => {
     try {
-        await axios.delete('http://localhost:8000/messages/deleteAllMessages');
+        await axios.delete('https://antworld-server.herokuapp.com/messages/deleteAllMessages');
         dispatch({
             type: CLEAR_LIST_ITEMS
         })
@@ -74,7 +74,7 @@ export const updateItem = (input, updateText) => async (
 ) => {
     try {
         console.log(updateText);
-        await axios.put('http://localhost:8000/messages/updateMessage', {
+        await axios.put('https://antworld-server.herokuapp.com/messages/updateMessage', {
             _id: input._id,
             updateText: updateText
         })
