@@ -97,7 +97,7 @@ class HomePage extends React.Component {
                     updateText={this.handleUpdateTextChange}></DetailedView>
 
                     <div>
-                    <h3>Current Messages</h3>
+                        <h3>Current Messages</h3>
                         <button type="button" onClick={this.clearList}>Clear list</button>
                         <ul id="list">
                         { this.props.inputs.map( i => (
